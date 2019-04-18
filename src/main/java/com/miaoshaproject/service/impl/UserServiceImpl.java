@@ -8,6 +8,8 @@ import com.miaoshaproject.error.BusinessException;
 import com.miaoshaproject.error.EmBusinessError;
 import com.miaoshaproject.service.UserService;
 import com.miaoshaproject.service.model.UserModel;
+import com.miaoshaproject.validator.ValidationResult;
+import com.miaoshaproject.validator.ValidatorImpl;
 import com.sun.javafx.beans.IDProperty;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
@@ -30,6 +32,9 @@ public class UserServiceImpl implements UserService {
 
     @Resource
     private UserPasswordDOMapper userPasswordDOMapper;
+
+    @Autowired
+    private ValidatorImpl validator;
     @Override
     public UserModel getUserById(Integer id) {
         //调用userdomapper获取到对应的用户dataobject
@@ -48,12 +53,17 @@ public class UserServiceImpl implements UserService {
     public void register(UserModel userModel) throws BusinessException {
         if (userModel ==null){
             throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR);
+
         }
-        if(StringUtils.isEmpty(userModel.getName())
-                ||userModel.getGender()==null
-                ||userModel.getAge()==null
-                ||StringUtils.isEmpty(userModel.getTelphone())){
-            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR);
+//        if(StringUtils.isEmpty(userModel.getName())
+//                ||userModel.getGender()==null
+//                ||userModel.getAge()==null
+//                ||StringUtils.isEmpty(userModel.getTelphone())){
+//            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR);
+//        }
+        ValidationResult result=validator.validate(userModel);
+        if (result.isHasErrors()){
+            throw new BusinessException(EmBusinessError.PARAMETER_VALIDATION_ERROR,result.getErrMsg());
         }
 
 

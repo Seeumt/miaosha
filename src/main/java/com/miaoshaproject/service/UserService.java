@@ -13,7 +13,7 @@ public interface UserService {
 
    /*
    telphone:用户注册手机
-   passwoed:用户加密后的密码
+   password:用户加密后的密码
     */
    UserModel validLogin(String telphone,String encrptPassword)throws BusinessException;
 

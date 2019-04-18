@@ -3,6 +3,7 @@ package com.miaoshaproject.validator;
 import org.apache.commons.lang3.StringUtils;
 
 import java.lang.reflect.MalformedParameterizedTypeException;
+import java.util.HashMap;
 import java.util.Map;
 
 
@@ -13,7 +14,7 @@ public class ValidationResult {
     private boolean hasErrors;
 
     //存放错误信息的map
-    private Map<String,String>errorMsgMap;
+    private Map<String,String>errorMsgMap=new HashMap<>();
 
     public boolean isHasErrors() {
 
