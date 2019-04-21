@@ -13,19 +13,18 @@
   <sql id="Base_Column_List">
     id, name, gender, age, telphone, register_mode, third_party_id
   </sql>
-
-  <select id="selectByTelphone"  resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from user_info
-    where telphone = #{telphone,jdbcType=VARCHAR}
-  </select>
-
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from user_info
     where id = #{id,jdbcType=INTEGER}
+  </select>
+
+  <select id="selectByItemId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from item_stock
+    where item_id = #{itemId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from user_info
@@ -39,7 +38,7 @@
       #{age,jdbcType=INTEGER}, #{telphone,jdbcType=VARCHAR}, #{registerMode,jdbcType=VARCHAR}, 
       #{thirdPartyId,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.miaoshaproject.dataobject.UserDO" keyProperty="id" useGeneratedKeys="true">
+  <insert id="insertSelective" parameterType="com.miaoshaproject.dataobject.UserDO">
     insert into user_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">

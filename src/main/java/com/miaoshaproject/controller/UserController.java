@@ -28,7 +28,8 @@ import java.util.Random;
 
 @Controller("user")//用来被spring扫描到
 @RequestMapping("/user")//通过/user的方式访问到
-@CrossOrigin(allowCredentials = "true",allowedHeaders = "*" )
+@CrossOrigin(origins ={"*"} ,allowCredentials = "true" )
+//原来是这样的@CrossOrigin(allowCredentials = "true",allowedHeaders = "*" )
 public class UserController extends BaseController{
 
 @Autowired
@@ -132,14 +133,14 @@ private UserService userService;
         }
 
         //将核心领域模型用户对象转化为可供UI使用的viewobject
-        UserVO userVO=convertFormModel(userModel);
+        UserVO userVO=convertFromModel(userModel);
 
         //返回通用对象
         return CommonReturnType.create(userVO);
     }
 
 
-    private UserVO convertFormModel(UserModel userModel){
+    private UserVO convertFromModel(UserModel userModel){
         if (userModel==null){
             return null;
         }
