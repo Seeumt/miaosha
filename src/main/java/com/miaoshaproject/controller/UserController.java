@@ -53,6 +53,7 @@ private UserService userService;
         }
 
         //用户登陆服务，用来校验用户登陆是否合法
+        //此处调用Service接口？？？？？？？？？？？
         UserModel userModel=userService.validLogin(telphone,this.EncodeByMd5(password));
 
         //加入到用户凭证登陆成功的session内

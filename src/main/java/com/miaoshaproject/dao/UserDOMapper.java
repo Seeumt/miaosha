@@ -2,7 +2,7 @@ package com.miaoshaproject.dao;
 
 import com.miaoshaproject.dataobject.UserDO;
 
-public interface UserDOMapper {
+public interface    UserDOMapper {
     int deleteByPrimaryKey(Integer id);
 
     int insert(UserDO record);
@@ -12,6 +12,7 @@ public interface UserDOMapper {
     UserDO selectByPrimaryKey(Integer id);
 
     UserDO selectByTelphone(String telphone);
+
     int updateByPrimaryKeySelective(UserDO record);
 
     int updateByPrimaryKey(UserDO record);

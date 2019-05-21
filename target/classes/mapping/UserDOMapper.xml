@@ -30,7 +30,7 @@
     delete from user_info
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.miaoshaproject.dataobject.UserDO">
+  <insert id="insert" parameterType="com.miaoshaproject.dataobject.UserDO" useGeneratedKeys="true" keyProperty="id">
     insert into user_info (id, name, gender, 
       age, telphone, register_mode, 
       third_party_id)
@@ -38,7 +38,7 @@
       #{age,jdbcType=INTEGER}, #{telphone,jdbcType=VARCHAR}, #{registerMode,jdbcType=VARCHAR}, 
       #{thirdPartyId,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.miaoshaproject.dataobject.UserDO">
+  <insert id="insertSelective" parameterType="com.miaoshaproject.dataobject.UserDO" useGeneratedKeys="true" keyProperty="id">
     insert into user_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -121,4 +121,11 @@
       third_party_id = #{thirdPartyId,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select id="selectByTelphone" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from user_info
+    where telphone = #{telphone,jdbcType=VARCHAR}
+
+  </select>
 </mapper>
