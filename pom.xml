@@ -116,6 +116,7 @@
           <executions>
             <execution>
               <id>mybatis generator</id>
+<!--              这个id随便取-->
               <phase>package</phase>
               <goals>
                 <goal>generate</goal>

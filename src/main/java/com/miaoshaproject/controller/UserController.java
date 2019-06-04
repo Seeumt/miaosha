@@ -115,7 +115,8 @@ private UserService userService;
 
 
         //将OTP验证码通过短信通道发送给用户，省略
-        System.out.println("telphone = "+telphone+"&otpCode = "+otpCode+this.httpServletRequest.getSession().getAttribute(telphone));
+       // System.out.println("telphone = "+telphone+"&otpCode = "+otpCode+this.httpServletRequest.getSession().getAttribute(telphone));
+        System.out.println("telphone = "+telphone+"&otpCode = "+otpCode);
 
         return CommonReturnType.create(null);
 
